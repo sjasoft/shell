@@ -47,7 +47,21 @@ function ecr_pull {
 
     ecr_login $profile
     docker pull $arn
-    docker tag $arn $repo
+    echo $arn
+}
+
+function pull_run {
+    repo=$1
+    shift 1
+    arn=$(ecr_arn)
+    ecr_pull $repo
+    shift 1
+    docker run -d $@ $arn
+
+}
+
+function pull_run_host {
+    pull_run $1 --network host
 }
     
 
