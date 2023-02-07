@@ -30,8 +30,9 @@ function erda_dockers {
     ecr_pull erda
 }
 
-function fusion_docker (
+function fusion_docker {
     curl -fsSL https://raw.githubusercontent.com/FusionAuth/fusionauth-containers/master/docker/fusionauth/docker-compose.yml > docker-compose.yml && \
     curl -fsSL https://raw.githubusercontent.com/FusionAuth/fusionauth-containers/master/docker/fusionauth/.env > .env && \
     docker-compose up
-)
+}
+
