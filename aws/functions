@@ -76,3 +76,4 @@ function ecr_build_push {
     docker tag $image $arn
     docker push $arn
 }
+export AL2023=public.ecr.aws/amazonlinux/amazonlinux:2023
