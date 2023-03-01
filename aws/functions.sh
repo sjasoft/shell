@@ -51,11 +51,12 @@ function ecr_pull {
 }
 
 function pull_run {
+    # note we assume profile=default here
     repo=$1
-    shift 1
-    arn=$(ecr_arn)
+    arn=$(ecr_arn $repo)
     ecr_pull $repo
     shift 1
+    echo docker run -d $@ $arn
     docker run -d $@ $arn
 
 }
