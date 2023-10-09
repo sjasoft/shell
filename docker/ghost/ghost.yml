@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  ghost:
+    image: ghost:4
+    ports:
+      - 8080:2368
+    environment:
+      url: https://ghost.example.com
+    volumes:
+      - ghost:/var/lib/ghost/content
+    restart: unless-stopped
+
+volumes:
+  ghost:

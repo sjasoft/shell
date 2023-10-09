@@ -19,3 +19,28 @@ function fusion_docker {
     docker-compose up
 }
 
+function lucs-open {
+    drive_partition=$1
+    mapped_as=$2
+    sudo cryptsetup luksOpen $drive_partition $mapped_as
+}
+    
+function luks-install {
+    drive_partition=$1
+    sudo cryptsetup luksFormat $drive_partition
+}
+
+function luks-use {
+    drive_partition=$1
+    mapper_name=$2
+    mount_to=$3
+    lucs-open $drive_partition $mapper_name
+    sudo mount /dev/mapper/$mapper_name $mount_to
+}
+
+function luks-close {
+   mounted_as=$1
+   mapper_name=$2
+   sudo umount $mounted_as
+   sudo cryptsetup luksClose $mapper_name
+}
