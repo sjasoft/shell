@@ -1,3 +1,12 @@
+function wild_cert {
+    PORKBUN_KEY=$1
+    PORKBUN_SECRET=$2
+    DOMAIN=$3
+    EMAIL=${4:-"samantha@privacy-practice.com"}
+    echo $EMAIL
+    certbot certonly --agree-tos --email $EMAIL --preferred-challenges dns --authenticator dns-porkbun --dns-porkbun-key $PORKBUN_KEY --dns-porkbun-secret $PORKBUN_SECRET --dns-porkbun-propagation-seconds 60 -d "*.$DOMAIN"
+}
+
 function install_mongo {
     code=$(lsb_release -c -s)
     sudo apt-get install gnupg

@@ -15,7 +15,7 @@ services:
       database__connection__password: example
       database__connection__database: ghost
       # this url value is just an example, and is likely wrong for your environment!
-      url: http://localhost:8080
+      url: http://blog.privacy-practice.com
     volumes:
       - ghost:/var/lib/ghost/content
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
