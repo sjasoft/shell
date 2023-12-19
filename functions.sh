@@ -1,6 +1,6 @@
 function into_to_git {
     path=$1
-    git_place=${2:"https://github.com"}
+    git_place=${2:-"https://github.com"}
     git init
     git commit -m 'first commit'
     git remote add origin $git_place/$path
