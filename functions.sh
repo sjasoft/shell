@@ -1,3 +1,11 @@
+function into_to_git {
+    path=$1
+    git_place=${2:"https://github.com"}
+    git init
+    git commit -m 'first commit'
+    git remote add origin $git_place/$path
+    git push -u origin master
+}
 function install_mongo {
     code=$(lsb_release -c -s)
     sudo apt-get install gnupg
