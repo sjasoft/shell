@@ -14,8 +14,9 @@ services:
       - NEXTCLOUD_MOUNT=/mnt/
       - SKIP_DOMAIN_VALIDATION=true
     volumes:
-      - nextcloud_aio_mastercontainer:/mnt/docker-aio-config
+      - /run/docker.sock:/var/run/docker.sock
+      - nextcloud_aio_mastercontainer2:/mnt/docker-aio-config
 
 volumes:
-  nextcloud_aio_mastercontainer:
-    name: nextcloud_aio_mastercontainer
+  nextcloud_aio_mastercontainer2:
+    name: nextcloud_aio_mastercontainer2
