@@ -1,3 +1,11 @@
+function git-setup {
+    git init
+    git remote add origin $1
+    git pull origin main
+    git add .
+    git commit -a -m initial
+    git push origin main
+}
 function into_to_git {
     path=$1
     git_place=${2:-"https://github.com"}
