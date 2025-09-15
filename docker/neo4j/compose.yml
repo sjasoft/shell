@@ -4,13 +4,26 @@ services:
     image: neo4j:latest
     container_name: neo4j
     ports:
-      - "7474:7474"
-      - "7687:7687"
+      - "192.168.1.50:7474:7474"   # HTTP Browser
+      - "192.168.1.50:7687:7687"   # Bolt
     environment:
-      - NEO4J_AUTH=neo4j/test
+      # Authentication
+      - NEO4J_AUTH=neo4j/StrongPassword123
+
+      # Allow remote access
+      - NEO4J_dbms_connector_bolt_listen__address=:7687
+      - NEO4J_dbms_connector_http_listen__address=:7474
+      - NEO4J_dbms_connector_https_listen__address=:7473
+
+      # Enable APOC & GDS
+      - NEO4JLABS_PLUGINS=["apoc","graph-data-science"]
+
+      # Optional: allow loading files from outside /import
+      - NEO4J_dbms_security_allow__csv__import__from__file__urls=true
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_apoc_import_file_use__neo4j__config=true
     volumes:
       - ./data:/data
       - ./logs:/logs
       - ./conf:/conf
       - ./plugins:/plugins
-
