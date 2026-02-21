@@ -2,6 +2,10 @@ function transcribe_audio {
     whisperx $1 --verbose False --model medium --language en --output_dir /tmp  --output_format txt
 }    
 
+function cifs-mount {
+    sudo mount -t cifs username=$USER password=${CIFS_PASSWORD} uuid=$(id -u) gid=$(id -g) //192.168.0.138/$1 $2
+}
+
 function transcribe {
     rm /tmp/video.*
     yt-dlp -x --cookies-from-browser firefox --audio-format mp3 -o /tmp/video.mp3 $1
