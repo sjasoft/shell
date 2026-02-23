@@ -3,7 +3,7 @@ function transcribe_audio {
 }    
 
 function cifs-mount {
-    sudo mount -t cifs username=$USER password=${CIFS_PASSWORD} uuid=$(id -u) gid=$(id -g) //192.168.0.138/$1 $2
+    sudo mount -t cifs -o username=$USER,password=$CIFS_PASSWORD,uid=1000,gid=1000 //192.168.0.138/$1 $2
 }
 
 function transcribe {
